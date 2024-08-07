@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/TECinfoFBM/SGU/issues"
   },
-  "homepage": "https://github.com/TECinfoFBM/SGU#readme"
+  "homepage": "https://github.com/TECinfoFBM/SGU#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2"
+  }
 }
