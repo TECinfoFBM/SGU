@@ -19,7 +19,7 @@ Sistema desenvolvido para ensinar aos alunos com realizar operações com banco 
     - [ ] Controle de Acesso (24/09)
 - [ ] Site Publico
 
-## Avaliação e Observações
+# Avaliação e Observações
     - O Aluno que finalizar todas as atividade de sala de aula até o dia (24/09) ganhara 3 pontos.
     - O Aluno que apresetar um controle de clientes até o dia (24/09) ganhar 1 ponto extra.
     - Prova escrita dia 16/09 (Segunda-feria) valor 5 pontos
