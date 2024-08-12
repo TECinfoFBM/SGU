@@ -33,9 +33,11 @@ sudo apt install mysql-server
 sudo mysql_secure_installation
 ```
 
-## Configuração
+### Configuração
 Acompanhe a instalação digitando os valores abaixo conforme solicitado.
-y, 0, nova senha, y, n, y, y, n
+
+* * y, 0, nova senha, y, n, y, y, n * *
+
 **Senha = 21324354**
 
 ## Acessando Mysql
