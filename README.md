@@ -36,7 +36,7 @@ sudo mysql_secure_installation
 ### Configuração
 Acompanhe a instalação digitando os valores abaixo conforme solicitado.
 
-* * y, 0, nova senha, y, n, y, y, n * *
+_ _ y, 0, nova senha, y, n, y, y, n _ _
 
 **Senha = 21324354**
 
