@@ -25,7 +25,7 @@ Sistema desenvolvido para ensinar aos alunos com realizar operações com banco 
 - Prova escrita dia 16/09 (Segunda-feria) valor 5 pontos
 - Avaliação Atitudinal valor 1 ponto
 
-# =====[ Instalção do MySQL ]=====
+# =====[ Instalação do MySQL ]=====
 
 ## Instalação
 ``` 
@@ -33,3 +33,22 @@ sudo apt install mysql-server
 sudo mysql_secure_installation
 ```
 
+## Configuração
+Acompanhe a instalação digitando os valores abaixo conforme solicitado.
+y, 0, nova senha, y, n, y, y, n
+**Senha = 21324354**
+
+## Acessando Mysql
+``` 
+sudo mysql -p -u root
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '21324354'; 
+```
+**Senha = 21324354**
+
+## Criando DataBase
+``` 
+create database dbSGU;
+show databases;
+use dbSGU;
+show tables;
+``` 
