@@ -21,6 +21,13 @@ Sistema desenvolvido para ensinar aos alunos com realizar operações com banco 
 
 # Avaliação e Observações
 - O Aluno que finalizar todas as atividade de sala de aula até o dia (24/09) ganhara 3 pontos.
-- O Aluno que apresetar um controle de clientes até o dia (24/09) ganhar 1 ponto extra.
+- O Aluno que apresetar um controle de clientes até o dia (24/09) ganhará 1 ponto extra.
 - Prova escrita dia 16/09 (Segunda-feria) valor 5 pontos
 - Avaliação Atitudinal valor 1 ponto
+
+# =====[ Instalção do MySQL ]=====
+
+##Instalação
+    sudo apt install mysql-server
+    sudo mysql_secure_installation
+
