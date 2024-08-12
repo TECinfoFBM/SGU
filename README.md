@@ -28,7 +28,8 @@ Sistema desenvolvido para ensinar aos alunos com realizar operações com banco 
 # =====[ Instalção do MySQL ]=====
 
 ## Instalação
-    
-    sudo apt install mysql-server
-    sudo mysql_secure_installation
+``` 
+sudo apt install mysql-server
+sudo mysql_secure_installation
+```
 
