@@ -32,3 +32,10 @@ const publico = require("./routes/publico")
 app.use("/",publico)
 const privado = require("./routes/privado")
 app.use("/privado/",privado)
+
+const db = require("./models");
+db.sequelize.sync().then(() => {
+    console.log("Banco de dados sincronizado.");
+}).catch((err) => {
+    console.log("Falha ao sincronizar o banco de dados: " + err.message);
+});
