@@ -34,7 +34,7 @@ sudo mysql_secure_installation
 ```
 Acompanhe a instalação digitando os valores abaixo conforme solicitado.
 
-***y, 0, y, n, y, y, n***
+***y, 0, y, n, y, y***
 
 ## Acessando Mysql
 ``` 

@@ -8,6 +8,24 @@ const ip = require("ip").address();
 const protocol = process.env.PROTOCOL || "http"
 const port = process.env.PORT || 3000
 
+//configuração da sessão (Salva dados temporarios no servidor)
+const session = require("express-session");
+app.use(session({
+    secret:process.env.SECRET, //colocar a palavra secreta no .env
+    resave:true,
+    saveUninitialized:true
+}));
+const flash = require("connect-flash");
+app.use(flash());
+
+//Configuração de um middleware 
+//Toda vez que o programa rodar, ele passará por este processo
+app.use((req,res,next)=>{
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    next();
+});
+
 //Configuração do Body-Parser
 var bodyParser = require('body-parser')
 app.use(bodyParser.json())
@@ -33,9 +51,12 @@ app.use("/",publico)
 const privado = require("./routes/privado")
 app.use("/privado/",privado)
 
+//Configuração do Banco de Dados
 const db = require("./models");
 db.sequelize.sync().then(() => {
     console.log("Banco de dados sincronizado.");
 }).catch((err) => {
     console.log("Falha ao sincronizar o banco de dados: " + err.message);
 });
+
+

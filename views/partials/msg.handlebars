@@ -1,0 +1,15 @@
+<div class="">
+    {{#if success_msg}}
+    <div class="alert alert-success alert-dismissible topmenu mt-3 mb-0 mx-5" role="alert">
+        <div>{{success_msg}}</div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{/if}}
+
+    {{#if error_msg}}
+        <div class="alert alert-danger alert-dismissible topmenu mt-3 mb-0 mx-5" role="alert">
+            <div>{{error_msg}}</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {{/if}}
+</div>
