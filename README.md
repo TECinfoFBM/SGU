@@ -10,7 +10,7 @@ Sistema desenvolvido para ensinar aos alunos com realizar operações com banco 
 - [x] Site Privado (13/08)
     - [x] Layout do Site Administrativo (13/08)
     - [ ] Controle de Usuário 
-        - [ ] Cadastro de Usuário (20/08)
+        - [x] Cadastro de Usuário (20/08)
         - [ ] Lista de Usuário (27/08)
         - [ ] Consulta de Usuário (03/09)
         - [ ] Editar Usuário (10/09)
