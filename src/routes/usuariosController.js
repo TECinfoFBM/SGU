@@ -14,8 +14,22 @@ async function validaData(data){
     return vef
 }
 
-router.get("/",(req,res)=>{
-    res.render("privado/usuarios/lista",response)
+router.get("/",async (req,res)=>{
+    try{
+        const data = JSON.parse(JSON.stringify(await Modelo.findAll()));
+        if(data.length){
+            response.dados = data
+            response.total = data.length
+            res.render("privado/usuarios/lista",response) 
+        }else{
+            response.msg = "Registros não encontrados ou inexistentes"
+            res.render("privado/usuarios/lista",response)  
+        }
+    } catch(erro){
+        req.flash("error_msg","houve um erro na execução do pedido");
+        response.msg = "Registros não encontrados ou inexistentes"
+        res.render("privado/usuarios/lista",response)     
+    }
 })
 
 router.get("/novo", (req,res)=>{
