@@ -114,4 +114,26 @@ router.post("/novo",async (req,res)=>{
     }
 })
 
+router.get("/find/:id",async (req,res)=>{
+    try{
+        if(isNaN(req.params.id)){
+            req.flash("error_msg","Registro não encontrado ou inexistente.");
+            res.redirect("/privado/usuarios");
+        }else{
+            const data = JSON.parse(JSON.stringify(await Modelo.findByPk(req.params.id)));
+            if(data){
+                response.dados = data
+                res.render("privado/usuarios/detalhe",response) 
+            }else{
+                req.flash("error_msg","Registro não encontrado ou inexistente.");
+                res.redirect("/privado/usuarios");
+            }
+        } 
+    } catch(erro){
+        req.flash("error_msg","houve um erro na execução do pedido.");
+        res.render("privado/usuarios",response)     
+    }
+})
+
+
 module.exports = router
