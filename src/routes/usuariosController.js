@@ -136,4 +136,50 @@ router.get("/find/:id",async (req,res)=>{
 })
 
 
+router.get("/delete/:id",async (req,res)=>{
+    try{
+        if(isNaN(req.params.id)){
+            req.flash("error_msg","Registro não encontrado ou inexistente.");
+            res.redirect("/privado/usuarios");
+        }else{
+            const data = JSON.parse(JSON.stringify(await Modelo.findByPk(req.params.id)));
+            if(data){
+                response.dados = data
+                res.render("privado/usuarios/deletar",response) 
+            }else{
+                req.flash("error_msg","Registro não encontrado ou inexistente.");
+                res.redirect("/privado/usuarios");
+            }
+        } 
+    } catch(erro){
+        req.flash("error_msg","houve um erro na execução do pedido.");
+        res.render("privado/usuarios",response)     
+    }
+})
+
+router.post("/delete/:id",async (req,res)=>{
+    try{
+        if(isNaN(req.params.id)){
+            req.flash("error_msg","Registro não encontrado ou inexistente.");
+            res.redirect("/privado/usuarios");
+        }else{
+            const data = await Modelo.destroy({
+                where: {
+                  id: req.params.id,
+                },
+              });
+            if(data){
+                req.flash("success_msg","Usuário deletado com sucesso!");
+                res.redirect("/privado/usuarios");
+            }else{
+                req.flash("error_msg","Registro não encontrado ou inexistente.");
+                res.redirect("/privado/usuarios");
+            }
+        } 
+    } catch(erro){
+        req.flash("error_msg","houve um erro na execução do pedido.");
+        res.render("privado/usuarios",response)     
+    }
+})
+
 module.exports = router
