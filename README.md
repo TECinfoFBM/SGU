@@ -12,7 +12,7 @@ Sistema desenvolvido para ensinar aos alunos com realizar operações com banco 
     - [ ] Controle de Usuário 
         - [x] Cadastro de Usuário (20/08)
         - [x] Lista de Usuário (27/08)
-        - [ ] Consulta de Usuário (03/09)
+        - [X] Consulta de Usuário (03/09)
         - [ ] Editar Usuário (10/09)
         - [ ] Deletar Usuário (17/09)
     - [ ] Tela de Login (24/09)
