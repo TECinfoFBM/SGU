@@ -1,8 +1,7 @@
 const router = require("express").Router()
-const response = require("../utils/responseModel").get()
+const autenticar = require("../utils/responseModel")
 const db = require("../models");
 const Modelo = db.Cantor;
-response.areaPrivada=true
 
 async function validaData(data){
     let vef = true
@@ -11,7 +10,8 @@ async function validaData(data){
     return vef
 }
 
-router.get("/",async (req,res)=>{
+router.get("/",autenticar.verificarAcesso,async (req,res)=>{
+    let response = autenticar.get(true)
     try{
         const data = JSON.parse(JSON.stringify(await Modelo.findAll()));
         if(data.length){
@@ -31,12 +31,13 @@ router.get("/",async (req,res)=>{
     }
 })
 
-router.get("/novo", (req,res)=>{
+router.get("/novo",autenticar.verificarAcesso, (req,res)=>{
     res.render("privado/cantores/novo",response)
 })
 
 //Terceiro novo com a mensagem na Session(ajustar no index)
 router.post("/novo",async (req,res)=>{
+    let response = autenticar.get(true)
     let body = JSON.parse(JSON.stringify(req.body))
     let validacao = await validaData(body)
     let erro = "";
@@ -56,7 +57,8 @@ router.post("/novo",async (req,res)=>{
     }
 })
 
-router.get("/find/:id",async (req,res)=>{
+router.get("/find/:id",autenticar.verificarAcesso,async (req,res)=>{
+    let response = autenticar.get(true)
     try{
         if(isNaN(req.params.id)){
             req.flash("error_msg","Registro não encontrado ou inexistente.");
@@ -78,7 +80,8 @@ router.get("/find/:id",async (req,res)=>{
 })
 
 
-router.get("/delete/:id",async (req,res)=>{
+router.get("/delete/:id",autenticar.verificarAcesso,async (req,res)=>{
+    let response = autenticar.get(true)
     try{
         if(isNaN(req.params.id)){
             req.flash("error_msg","Registro não encontrado ou inexistente.");
@@ -99,7 +102,8 @@ router.get("/delete/:id",async (req,res)=>{
     }
 })
 
-router.post("/delete/:id",async (req,res)=>{
+router.post("/delete/:id",autenticar.verificarAcesso,async (req,res)=>{
+    let response = autenticar.get(true)
     try{
         if(isNaN(req.params.id)){
             req.flash("error_msg","Registro não encontrado ou inexistente.");
@@ -124,7 +128,8 @@ router.post("/delete/:id",async (req,res)=>{
     }
 })
 
-router.get("/editar/:id",async (req,res)=>{
+router.get("/editar/:id",autenticar.verificarAcesso,async (req,res)=>{
+    let response = autenticar.get(true)
     try{
         if(isNaN(req.params.id)){
             req.flash("error_msg","Registro não encontrado ou inexistente.");
@@ -145,7 +150,8 @@ router.get("/editar/:id",async (req,res)=>{
     }
 })
 
-router.post("/editar/:id",async (req,res)=>{
+router.post("/editar/:id",autenticar.verificarAcesso,async (req,res)=>{
+    let response = autenticar.get(true)
     try{
         if(isNaN(req.params.id)){
             req.flash("error_msg","Registro não encontrado ou inexistente.");
