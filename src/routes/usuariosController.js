@@ -22,6 +22,8 @@ router.get("/",async (req,res)=>{
             response.total = data.length
             res.render("privado/usuarios/lista",response) 
         }else{
+            delete response.dados
+            delete response.total
             response.msg = "Registros não encontrados ou inexistentes"
             res.render("privado/usuarios/lista",response)  
         }
@@ -215,20 +217,22 @@ router.post("/editar/:id",async (req,res)=>{
                 let body = JSON.parse(JSON.stringify(req.body))
                 let validacao = body.nome==""?false:true
                 validacao &= body.email==""?false:true
-                if(body.senha != body.confirmacao){
-                    erro="A Senha deve ser igual a Confirmação de Senha!"
+                if(!validacao){
+                    erro="Dados necessários não foram preenchidos!"
                 }else{
-                    delete body.confirmacao
-                    if(body.senha!=""){
-                        const criptografia = require("../utils/criptografia")
-                        body.senha = await criptografia.encriptar(body.senha)
+                    if(body.senha != body.confirmacao){
+                        erro="A Senha deve ser igual a Confirmação de Senha!"
                     }else{
-                        delete body.senha
+                        delete body.confirmacao
+                        if(body.senha!=""){
+                            const criptografia = require("../utils/criptografia")
+                            body.senha = await criptografia.encriptar(body.senha)
+                        }else{
+                            delete body.senha
+                        }
+                        const atual = await data.update(body)
+                        body = JSON.parse(JSON.stringify(atual));
                     }
-                    console.log(body)
-                    const atual = await data.update(body)
-                    body = JSON.parse(JSON.stringify(atual));
-                    console.log(body)
                 }
                 
                 if(erro){

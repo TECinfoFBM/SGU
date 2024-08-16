@@ -19,6 +19,8 @@ router.get("/",async (req,res)=>{
             response.total = data.length
             res.render("privado/cantores/lista",response) 
         }else{
+            delete response.dados
+            delete response.total
             response.msg = "Registros não encontrados ou inexistentes"
             res.render("privado/cantores/lista",response)  
         }
@@ -153,9 +155,13 @@ router.post("/editar/:id",async (req,res)=>{
             if(data){
                 let erro = "";
                 let body = JSON.parse(JSON.stringify(req.body))
-                const atual = await data.update(body)
-                body = JSON.parse(JSON.stringify(atual));
-                
+                let validacao = body.nome==""?false:true
+                if(!validacao){
+                    erro="Dados necessários não foram preenchidos!"
+                }else{
+                    const atual = await data.update(body)
+                    body = JSON.parse(JSON.stringify(atual));
+                }
                 if(erro){
                     req.flash("error_msg",erro);
                     res.redirect(`/privado/cantores/editar/${req.params.id}`);
