@@ -131,7 +131,7 @@ router.get("/find/:id",async (req,res)=>{
         } 
     } catch(erro){
         req.flash("error_msg","houve um erro na execução do pedido.");
-        res.render("privado/usuarios",response)     
+        res.redirect("/privado/usuarios");    
     }
 })
 
@@ -153,7 +153,7 @@ router.get("/delete/:id",async (req,res)=>{
         } 
     } catch(erro){
         req.flash("error_msg","houve um erro na execução do pedido.");
-        res.render("privado/usuarios",response)     
+        res.redirect("/privado/usuarios");     
     }
 })
 
@@ -178,7 +178,75 @@ router.post("/delete/:id",async (req,res)=>{
         } 
     } catch(erro){
         req.flash("error_msg","houve um erro na execução do pedido.");
-        res.render("privado/usuarios",response)     
+        res.redirect("/privado/usuarios");   
+    }
+})
+
+router.get("/editar/:id",async (req,res)=>{
+    try{
+        if(isNaN(req.params.id)){
+            req.flash("error_msg","Registro não encontrado ou inexistente.");
+            res.redirect("/privado/usuarios");
+        }else{
+            const data = JSON.parse(JSON.stringify(await Modelo.findByPk(req.params.id)));
+            if(data){
+                response.dados = data
+                res.render("privado/usuarios/editar",response) 
+            }else{
+                req.flash("error_msg","Registro não encontrado ou inexistente.");
+                res.redirect("/privado/usuarios");
+            }
+        } 
+    } catch(erro){
+        req.flash("error_msg","houve um erro na execução do pedido.");
+        res.redirect("/privado/usuarios");    
+    }
+})
+
+router.post("/editar/:id",async (req,res)=>{
+    try{
+        if(isNaN(req.params.id)){
+            req.flash("error_msg","Registro não encontrado ou inexistente.");
+            res.redirect("/privado/usuarios");
+        }else{
+            const data = await Modelo.findByPk(req.params.id);
+            if(data){
+                let erro = "";
+                let body = JSON.parse(JSON.stringify(req.body))
+                let validacao = body.nome==""?false:true
+                validacao &= body.email==""?false:true
+                if(body.senha != body.confirmacao){
+                    erro="A Senha deve ser igual a Confirmação de Senha!"
+                }else{
+                    delete body.confirmacao
+                    if(body.senha!=""){
+                        const criptografia = require("../utils/criptografia")
+                        body.senha = await criptografia.encriptar(body.senha)
+                    }else{
+                        delete body.senha
+                    }
+                    console.log(body)
+                    const atual = await data.update(body)
+                    body = JSON.parse(JSON.stringify(atual));
+                    console.log(body)
+                }
+                
+                if(erro){
+                    req.flash("error_msg",erro);
+                    res.redirect(`/privado/usuarios/editar/${req.params.id}`);
+                }else{
+                    req.flash("success_msg","Usuário editado com sucesso!");
+                    res.redirect("/privado/usuarios");
+                }
+            }else{
+                req.flash("error_msg","Registro não encontrado ou inexistente.");
+                res.redirect("/privado/usuarios");
+            }
+        } 
+    } catch(erro){
+        console.log(erro)
+        req.flash("error_msg","houve um erro na execução do pedido.");
+        res.redirect("/privado/usuarios");     
     }
 })
 
