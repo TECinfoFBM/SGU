@@ -15,9 +15,11 @@ Sistema desenvolvido para ensinar aos alunos com realizar operações com banco 
         - [x] Consulta de Usuário (03/09)
         - [x] Deletar Usuário (10/09)
         - [x] Editar Usuário (17/09)
+    - [ ] Controle de Cantores
     - [ ] Tela de Login (24/09)
     - [ ] Controle de Acesso (24/09)
 - [ ] Site Publico
+
 
 # Avaliação e Observações
 - O Aluno que finalizar todas as atividade de sala de aula até o dia (24/09) ganhara 3 pontos.
