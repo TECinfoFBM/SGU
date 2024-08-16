@@ -1,14 +1,19 @@
 const router = require("express").Router()
-const response = require("../utils/responseModel")
-response.areaPrivada=true
+const autenticar = require("../utils/responseModel")
 
-router.get("/",response.verificarAcesso,(req,res)=>{
+router.get("/",autenticar.verificarAcesso,(req,res)=>{
+    let response = autenticar.get(true)
     res.render("privado/principal",response)
 })
+
+router.get("/sair",(req,res)=>{
+    delete req.session.user
+    res.redirect("/")
+})
 const usuarios = require("./usuariosController")
-router.use("/usuarios/",response.verificarAcesso,usuarios)
+router.use("/usuarios/",usuarios)
 
 const cantores = require("./cantoresController")
-router.use("/cantores/",response.verificarAcesso,cantores)
+router.use("/cantores/",cantores)
 
 module.exports = router
