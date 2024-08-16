@@ -1,0 +1,21 @@
+<h2>Cadastro de cantores</h2>
+<hr>
+<form method="post">
+    <div class="mb-3 row">
+        <label for="nome" class="col-sm-3 col-form-label">Nome de cantor: </label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="descricao" class="col-sm-3 col-form-label">Descrição: </label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite uma descrição">
+        </div>
+    </div>
+    <hr>
+    <input type="submit" value="Salvar" class="btn btn-success"/>
+    <a href="/privado/cantores">
+        <button type="button" class="btn btn-danger">Cancelar</button>
+    </a>
+</form>

@@ -18,5 +18,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.Usuario = require("./Usuario")(sequelize, Sequelize);
+db.Cantor = require("./Cantor")(sequelize, Sequelize);
 
 module.exports = db;

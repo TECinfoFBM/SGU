@@ -9,4 +9,7 @@ router.get("/",(req,res)=>{
 const usuarios = require("./usuariosController")
 router.use("/usuarios/",usuarios)
 
+const cantores = require("./cantoresController")
+router.use("/cantores/",cantores)
+
 module.exports = router

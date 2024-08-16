@@ -1,0 +1,25 @@
+<h2>Edição de Cantores {{dados.nome}}</h2>
+<hr>
+    <div class="mx-5">
+       Nome de cantor que esta sendo editado: <strong>{{dados.nome}}</strong>
+    </div>
+<hr>
+<form method="post">
+    <div class="mb-3 row">
+        <label for="nome" class="col-sm-3 col-form-label">Nome de cantor: </label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome" value="{{dados.nome}}">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="descricao" class="col-sm-3 col-form-label">Descrição: </label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Digite seu email" value="{{dados.descricao}}">
+        </div>
+    </div>
+    <hr>
+    <input type="submit" value="Salvar" class="btn btn-success"/>
+    <a href="/privado/cantores">
+        <button type="button" class="btn btn-danger">Cancelar</button>
+    </a>
+</form>
